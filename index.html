@@ -1,79 +1,279 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FixMerah - Appeal WhatsApp</title>
+
+  <!-- Google Font (poppins mirip style portfolio modern) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 15px;
-      background-color: #f5f5f5;
+    :root{
+      --bg-1: #0b1020; /* deep navy */
+      --bg-2: #141726; /* darker */
+      --accent-1: #7c5cff; /* purple accent */
+      --accent-2: #25D366; /* whatsapp green (kept) */
+      --card-bg: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.7);
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.12), transparent),
+                  radial-gradient(800px 400px at 90% 90%, rgba(37,211,102,0.06), transparent),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+      box-sizing:border-box;
     }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
+
+    .wrap{
+      max-width:920px;
+      margin:36px auto;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:32px;
+      align-items:center;
     }
-    button {
-      background-color: #25D366; /* WhatsApp green */
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      width: 100%;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 16px;
+
+    /* Left: hero / title like portfolio */
+    .hero{
+      padding:28px;
     }
-    button:hover {
-      background-color: #128C7E;
+    .kicker{
+      display:inline-block;
+      font-size:12px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-weight:700;
+    }
+    h1{
+      margin:14px 0 8px;
+      font-size:40px;
+      line-height:1.02;
+      background: linear-gradient(90deg,#fff, rgba(255,255,255,0.85));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-weight:700;
+      letter-spacing:-0.5px;
+    }
+    p.lead{
+      margin:0;
+      margin-top:8px;
+      color:var(--muted);
+      max-width:640px;
+      font-size:15px;
+    }
+
+    /* Right: form card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.06);
+      padding:22px;
+      border-radius:14px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(8px) saturate(120%);
+    }
+
+    .card h2{
+      margin:0 0 8px;
+      font-size:20px;
+      color:#fff;
+    }
+    .card p { margin:0 0 14px; color:var(--muted); font-size:14px; }
+
+    label{
+      display:block;
+      margin:8px 0 6px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    input[type="tel"]{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      color: #fff;
+      outline:none;
+      font-size:15px;
+      box-sizing:border-box;
+    }
+    input[type="tel"]::placeholder{ color: rgba(255,255,255,0.35); }
+
+    .actions{
+      margin-top:16px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .btn{
+      flex:1;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      border:none;
+      font-size:15px;
+    }
+
+    .btn-primary{
+      background: linear-gradient(90deg,var(--accent-1), #5a3bff);
+      color:white;
+      box-shadow: 0 8px 20px rgba(124,92,255,0.18);
+    }
+
+    .btn-whatsapp{
+      background: linear-gradient(90deg,var(--accent-2), #128C7E);
+      color:white;
+      box-shadow: 0 6px 18px rgba(37,211,102,0.12);
+    }
+
+    .muted-note{
+      margin-top:12px;
+      font-size:13px;
+      color:rgba(255,255,255,0.45);
+    }
+
+    footer {
+      margin-top:28px;
+      text-align:center;
+      color:rgba(255,255,255,0.25);
+      font-size:13px;
+    }
+
+    /* Responsive */
+    @media (max-width:900px){
+      .wrap{ grid-template-columns: 1fr; padding:0 8px; gap:18px; }
+      h1{ font-size:32px; }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>FixMerah - Appeal WhatsApp</h2>
-  <p>Masukkan nomor telepon Anda yang bermasalah saat registrasi WhatsApp:</p>
-  <input type="tel" id="phoneInput" placeholder="Contoh: +6281234567890">
-  <button onclick="sendAppeal()">Kirim Banding via Gmail</button>
-</div>
+  <div class="wrap">
+    <!-- HERO / branding (mirip style portfolio: big title + accent) -->
+    <div class="hero" aria-hidden="false">
+      <div class="kicker">FixMerah</div>
+      <h1>FixMerah — Appeal WhatsApp</h1>
+      <p class="lead">
+        Cepat kirim banding untuk nomor yang mengalami masalah registrasi WhatsApp.
+        Tetap sederhana — masukkan nomor, pilih metode pengiriman, dan sistem akan membuka klien email default Anda (mailto) dengan isi pesan yang terformat.
+      </p>
+      <div style="margin-top:18px; display:flex; gap:12px; align-items:center;">
+        <button class="btn btn-primary" onclick="focusPhone()">Masukkan Nomor</button>
+        <button class="btn btn-whatsapp" onclick="fillExample()">Contoh +628123...</button>
+      </div>
+    </div>
 
-<script>
-  function sendAppeal() {
-    const input = document.getElementById('phoneInput');
-    const phoneNumber = input.value.trim();
+    <!-- FORM CARD (fungsi asli tetap) -->
+    <aside class="card" aria-labelledby="formTitle">
+      <h2 id="formTitle">Kirim Banding via Gmail</h2>
+      <p>Masukkan nomor telepon Anda yang bermasalah saat registrasi WhatsApp:</p>
 
-    if (!phoneNumber) {
-      alert('Silakan masukkan nomor telepon Anda.');
-      return;
+      <label for="phoneInput">Nomor telepon</label>
+      <input type="tel" id="phoneInput" placeholder="+6281234567890" inputmode="tel" />
+
+      <div class="actions">
+        <!-- Tombol utama (tetap memanggil sendAppeal) -->
+        <button class="btn btn-whatsapp" onclick="sendAppeal()">Kirim Banding</button>
+
+        <!-- Tombol alternatif: copy ke clipboard -->
+        <button class="btn btn-primary" onclick="copyToClipboard()">Salin Pesan</button>
+      </div>
+
+      <div class="muted-note">
+        Pesan akan dibuat berdasarkan nomor yang Anda masukkan. Tombol "Salin Pesan" menyalin template banding ke clipboard.
+      </div>
+
+      <footer>© FixMerah — styled by FebryWesker-Azbry-MD</footer>
+    </aside>
+  </div>
+
+  <script>
+    // --- Fungsi bawaan (tetap ada) --- //
+    function formatNumber(input) {
+      // Remove spaces and non + / digits, keep leading +
+      return input.trim().replace(/\s+/g, '').replace(/[^+0-9]/g, '');
     }
 
-    // Format nomor telepon untuk digunakan dalam URL mailto
-    const formattedNumber = phoneNumber.replace(/\s/g, '').replace(/[^+0-9]/g, '');
+    function sendAppeal() {
+      const input = document.getElementById('phoneInput');
+      const phoneNumber = formatNumber(input.value);
 
-    // Template pesan
-    const subject = "Appeal for WhatsApp Registration Issue";
-    const body = `Hello WhatsApp Team,\n\nHi, my name is ${formattedNumber}. I would like to submit an appeal or request for a review regarding the issue I experienced while registering my phone number with WhatsApp.\n\nDuring the registration process, a message appeared stating "login unavailable," preventing me from continuing with the account registration.\n\nWe would like to request that WhatsApp review and resolve this issue so I can resume using WhatsApp services normally.\n\nHere is the information for the number experiencing the issue: ${formattedNumber} (login unavailable)`;
+      if (!phoneNumber) {
+        alert('Silakan masukkan nomor telepon Anda.');
+        input.focus();
+        return;
+      }
 
-    // Buat URL mailto
-    const mailtoUrl = `mailto:support@support.whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const subject = "Appeal for WhatsApp Registration Issue";
+      const body = `Hello WhatsApp Team,%0D%0A%0D%0AHi, my phone number is ${phoneNumber}. I would like to submit an appeal or request for a review regarding the issue I experienced while registering my phone number with WhatsApp.%0D%0A%0D%0ADuring the registration process, a message appeared stating "login unavailable," preventing me from continuing with the account registration.%0D%0A%0D%0AWe would like to request that WhatsApp review and resolve this issue so I can resume using WhatsApp services normally.%0D%0A%0D%0AHere is the information for the number experiencing the issue: ${phoneNumber} (login unavailable)%0D%0A%0D%0AThank you.`;
 
-    // Arahkan ke aplikasi email default (Gmail jika tersedia)
-    window.location.href = mailtoUrl;
-  }
-</script>
+      // mailto: tetap mengarah ke email support (bisa diubah)
+      const mailtoUrl = `mailto:support@support.whatsapp.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      window.location.href = mailtoUrl;
+    }
 
+    // tambahan: salin template ke clipboard (user-friendly)
+    function copyToClipboard() {
+      const input = document.getElementById('phoneInput');
+      const phoneNumber = formatNumber(input.value);
+
+      if (!phoneNumber) {
+        alert('Silakan masukkan nomor telepon Anda terlebih dahulu untuk menyalin pesan.');
+        input.focus();
+        return;
+      }
+
+      const text = `Hello WhatsApp Team,\n\nHi, my phone number is ${phoneNumber}. I would like to submit an appeal or request for a review regarding the issue I experienced while registering my phone number with WhatsApp.\n\nDuring the registration process, a message appeared stating "login unavailable," preventing me from continuing with the account registration.\n\nWe would like to request that WhatsApp review and resolve this issue so I can resume using WhatsApp services normally.\n\nHere is the information for the number experiencing the issue: ${phoneNumber} (login unavailable)\n\nThank you.`;
+
+      navigator.clipboard?.writeText(text).then(() => {
+        alert('Template pesan berhasil disalin ke clipboard.');
+      }).catch(() => {
+        // fallback untuk browser yang tidak mendukung clipboard API
+        const tmp = document.createElement('textarea');
+        tmp.value = text;
+        document.body.appendChild(tmp);
+        tmp.select();
+        try {
+          document.execCommand('copy');
+          alert('Template pesan berhasil disalin ke clipboard.');
+        } catch (e) {
+          alert('Gagal menyalin otomatis. Silakan salin manual:\n\n' + text);
+        }
+        document.body.removeChild(tmp);
+      });
+    }
+
+    // utility kecil untuk UX
+    function focusPhone(){ document.getElementById('phoneInput').focus(); }
+    function fillExample(){ document.getElementById('phoneInput').value = '+6281234567890'; }
+
+    // optional: tekan Enter untuk submit
+    document.getElementById('phoneInput').addEventListener('keydown', function(e){
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendAppeal();
+      }
+    });
+  </script>
 </body>
 </html>
