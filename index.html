@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixMerah - Appeal WhatsApp</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 15px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #25D366; /* WhatsApp green */
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #128C7E;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>FixMerah - Appeal WhatsApp</h2>
+  <p>Masukkan nomor telepon Anda yang bermasalah saat registrasi WhatsApp:</p>
+  <input type="tel" id="phoneInput" placeholder="Contoh: +6281234567890">
+  <button onclick="sendAppeal()">Kirim Banding via Gmail</button>
+</div>
+
+<script>
+  function sendAppeal() {
+    const input = document.getElementById('phoneInput');
+    const phoneNumber = input.value.trim();
+
+    if (!phoneNumber) {
+      alert('Silakan masukkan nomor telepon Anda.');
+      return;
+    }
+
+    // Format nomor telepon untuk digunakan dalam URL mailto
+    const formattedNumber = phoneNumber.replace(/\s/g, '').replace(/[^+0-9]/g, '');
+
+    // Template pesan
+    const subject = "Appeal for WhatsApp Registration Issue";
+    const body = `Hello WhatsApp Team,\n\nHi, my name is ${formattedNumber}. I would like to submit an appeal or request for a review regarding the issue I experienced while registering my phone number with WhatsApp.\n\nDuring the registration process, a message appeared stating "login unavailable," preventing me from continuing with the account registration.\n\nWe would like to request that WhatsApp review and resolve this issue so I can resume using WhatsApp services normally.\n\nHere is the information for the number experiencing the issue: ${formattedNumber} (login unavailable)`;
+
+    // Buat URL mailto
+    const mailtoUrl = `mailto:support@support.whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Arahkan ke aplikasi email default (Gmail jika tersedia)
+    window.location.href = mailtoUrl;
+  }
+</script>
+
+</body>
+</html>
